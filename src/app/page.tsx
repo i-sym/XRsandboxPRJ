@@ -137,7 +137,7 @@ export default function ARPage() {
     return <primitive object={scene} {...props} />
   }
 
-  function Cable({ start, end, v1 = new THREE.Vector3(), v2 = new THREE.Vector3() }) {
+  function Cable({ start, end, v1 = new THREE.Vector3(0,0,0.1), v2 = new THREE.Vector3(0,0,-0.1) }) {
     const ref = useRef()
     useFrame(() => ref.current.setPoints(start.current.getWorldPosition(v1), end.current.getWorldPosition(v2)), [])
     return <QuadraticBezierLine ref={ref} lineWidth={3} color="#ff2060" />

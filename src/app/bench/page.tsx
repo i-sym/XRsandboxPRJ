@@ -1,5 +1,6 @@
 "use client";
 
+import KnifeStand from "@/components/model-presets/knives";
 import { GltfModel } from "@/components/xr/mesh-loader";
 import { Box, Grid, OrbitControls, useGLTF, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -29,6 +30,8 @@ function Piston(props: PistonProps) {
         <GltfModel gltfUrl="/models/cylinder.glb" position={[0, 0, 0]} rotation={[0, 0, 0]} />
     </group>;
 }
+
+
 
 function Garage(props) {
 
@@ -89,6 +92,7 @@ export default function DebugPage() {
                     </RayGrab>
                     {/* <Model1 position={[0, 0, 2]} scale={1} rotation={[0, 0, 0]} /> */}
                     <Garage position={[0, 0, 0]} scale={3} rotation={[0, 0, 0]} />
+                    <KnifeStand />
                 </XR>
             </Canvas>
         </div>
