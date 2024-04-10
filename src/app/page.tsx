@@ -79,6 +79,7 @@ import { Vector3 } from 'three/src/math/Vector3.js';
 import { MeshStandardMaterial } from 'three/src/materials/MeshStandardMaterial.js';
 import { AmbientLight, BoxGeometry, DirectionalLight } from 'three';
 import { NiceLight } from '@/components/xr/nice-environment';
+import { GltfModel } from "@/components/xr/mesh-loader";
 
 import * as THREE from 'three';
 
@@ -140,7 +141,7 @@ export default function ARPage() {
   function Cable({ start, end, v1 = new THREE.Vector3(0,0,0.1), v2 = new THREE.Vector3(0,0,-0.1) }) {
     const ref = useRef()
     useFrame(() => ref.current.setPoints(start.current.getWorldPosition(v1), end.current.getWorldPosition(v2)), [])
-    return <QuadraticBezierLine ref={ref} lineWidth={3} color="#ff2060" />
+    return <QuadraticBezierLine ref={ref} lineWidth={4} color="#0047ab" />
   }
 
   const cube = useRef()
@@ -170,13 +171,17 @@ export default function ARPage() {
             modelRight='https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/right-hand-black-webxr-tracking-ready/model.gltf'
           />
           <RayGrab>
-            <mesh ref={cube} position={[1, 1, 0]}>
-              <boxGeometry args={[0.1, 0.1, 0.1]} />
+            <mesh ref={cube} position={[2, 1, 0]}>
+              {/* <boxGeometry args={[0.1, 0.1, 0.1]} /> */}
+              <GltfModel gltfUrl="/models/push-in-fitting.gltf" scale={0.001} rotation={[0,-Math.PI/2,0]}/>
             </mesh>
           </RayGrab>
           <RayGrab>
-            <mesh ref={cube2} position={[0, 1, 0]}>
-              <boxGeometry args={[0.1, 0.1, 0.1]} />
+
+            <mesh ref={cube2} position={[-1, 1, 0]} >
+              {/* <boxGeometry args={[0.1, 0.1, 0.1]} /> */}
+              <GltfModel gltfUrl="/models/push-in-fitting.gltf" scale={0.001} rotation={[0,Math.PI/2,0]}/>
+              
             </mesh>
           </RayGrab>
           <Cable start={cube} end={cube2} />
